@@ -1,7 +1,7 @@
 ﻿$system = Get-WmiObject Win32_OperatingSystem | Select-Object OSArchitecture
 $mountResult = Mount-DiskImage -ImagePath "C:/temp/lang.iso" -StorageType ISO -PassThru
 $driveLetter = ($mountResult | Get-Volume).DriveLetter
-if (($system.OSArchitecture -eq "64 bits") -or ($system.OSArchitecture -eq "64-bits")) {
+if (($system.OSArchitecture -eq "64 bits") -or ($system.OSArchitecture -eq "64-bit")) {
     Dism /online /Add-Package /PackagePath:${driveLetter}:/LanguagesAndOptionalFeatures/Microsoft-Windows-Server-Language-Pack_x64_fr-fr.cab
 }
 else {
