@@ -48,32 +48,27 @@ if ($Mode -eq "Modern") {
     $GeoId = 84
     $TimeZone = "Romance Standard Time"
 
-    # New mandatory parameter for 24H2+
+    # Ajouter pack de langue Français
     Install-Language -Language $Language -CopyToSystem -Force
 
-    # Remove US language
-    Uninstall-Language "en-US"
-    Start-Sleep -Seconds 60
+    # NE PAS désinstaller en-US dans AVD → agent AVD en dépend !
 
-    # New recommended Microsoft method (24H2+)
-    Set-WinSystemLocale -SystemLocale $Language
-    Set-WinHomeLocation -GeoId $GeoId
-    Set-TimeZone -Id $TimeZone
-
-    # Apply full language pack to shell + login UI
-    Dism /Online /Set-Lang:$Language
-    Dism /Online /Set-SKUIntlDefaults:$Language
-
-    # Override UI language properly
-    Set-WinUILanguageOverride -Language $Language
-
-    # User language list
+    # Définir langue utilisateur (pas système)
     $LangList = New-WinUserLanguageList $Language
     Set-WinUserLanguageList $LangList -Force
 
-    # Culture
-    Set-Culture $Language
+    # Forcer UI override (sécurisé pour AVD)
+    Set-WinUILanguageOverride -Language $Language
 
-    # Reboot required twice in 24H2+
+    # Formats régionaux
+    Set-Culture $Language
+    Set-WinHomeLocation -GeoId $GeoId
+    Set-TimeZone -Id $TimeZone
+
+    # Optionnel : région / formats
+    Set-WinLanguageBarOption -UseLegacyLanguageBar
+
+    # Reboot (un seul)
+    Start-sleep -Seconds 40
     Restart-Computer -Force
 }
