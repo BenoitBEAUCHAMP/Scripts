@@ -1,4 +1,5 @@
 $Build = [System.Environment]::OSVersion.Version.Build
+$Mode = "Legacy"
 if ($Build -lt 26100) {
     Write-Host "Windows 11 <= 23H2 detected. Running Legacy configuration." -ForegroundColor Green
     $Mode = "Legacy"
