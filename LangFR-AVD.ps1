@@ -1,15 +1,3 @@
-$Build = [System.Environment]::OSVersion.Version.Build
-$Mode = "Legacy"
-if ($Build -lt 26100) {
-    Write-Host "Windows 11 <= 23H2 detected. Running Legacy configuration." -ForegroundColor Green
-    $Mode = "Legacy"
-}
-else {
-    Write-Host "Windows 11 24H2+ detected. Running Modern configuration." -ForegroundColor Yellow
-    $Mode = "Modern"
-}
-
-if ($Mode -eq "Legacy") {
   #variables
   $regionalsettingsURL = "https://raw.githubusercontent.com/BenoitBEAUCHAMP/Scripts/refs/heads/main/FRRegion.xml"
   $RegionalSettings = "C:\Region.xml"
@@ -41,34 +29,3 @@ if ($Mode -eq "Legacy") {
   # restart virtual machine to apply regional settings to current user. 
   Start-sleep -Seconds 40
   Restart-Computer
-}
-if ($Mode -eq "Modern") {
-
-    $Language = "fr-FR"
-    $GeoId = 84
-    $TimeZone = "Romance Standard Time"
-
-    # Ajouter pack de langue Français
-    Install-Language -Language $Language -CopyToSystem -Force
-
-    # NE PAS désinstaller en-US dans AVD → agent AVD en dépend !
-
-    # Définir langue utilisateur (pas système)
-    $LangList = New-WinUserLanguageList $Language
-    Set-WinUserLanguageList $LangList -Force
-
-    # Forcer UI override (sécurisé pour AVD)
-    Set-WinUILanguageOverride -Language $Language
-
-    # Formats régionaux
-    Set-Culture $Language
-    Set-WinHomeLocation -GeoId $GeoId
-    Set-TimeZone -Id $TimeZone
-
-    # Optionnel : région / formats
-    Set-WinLanguageBarOption -UseLegacyLanguageBar
-
-    # Reboot (un seul)
-    Start-sleep -Seconds 40
-    Restart-Computer -Force
-}
