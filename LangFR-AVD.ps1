@@ -57,21 +57,10 @@ if ($Mode -eq "Modern") {
   $LangList = New-WinUserLanguageList $Language
   $LangList[0].InputMethodTips.Clear()
   $LangList[0].InputMethodTips.Add("040C:$Locale")
+  $LangList[0].Handwriting = "fr-FR"
   Set-WinUserLanguageList $LangList -Force
-  foreach ($k in $intlValues.Keys) {
-    Set-ItemProperty -Path $defaultIntl -Name $k -Value $intlValues[$k]
-  }
-  # Clavier
-  New-Item -Path $defaultKeyboard -Force | Out-Null
-  Set-ItemProperty -Path $defaultKeyboard -Name "1" -Value $Locale
-  #COMPTE SYSTEM et new users
-  $systemIntl = "Registry::HKEY_USERS\S-1-5-18\Control Panel\International"
-  $systemKeyboard = "Registry::HKEY_USERS\S-1-5-18\Keyboard Layout\Preload"
-  foreach ($k in $intlValues.Keys) {
-    Set-ItemProperty -Path $systemIntl -Name $k -Value $intlValues[$k]
-  }
-  New-Item -Path $systemKeyboard -Force | Out-Null
-  Set-ItemProperty -Path $systemKeyboard -Name "1" -Value $Locale
+  Copy-Item -Path "HKCU:\Control Panel\International" -Destination "HKU\.DEFAULT\Control Panel\International" -Recurse -Force
+  Copy-Item -Path "HKCU:\Keyboard Layout" -Destination "HKU\.DEFAULT\Keyboard Layout" -Recurse -Force
 }
   # restart virtual machine to apply regional settings to current user. 
   Start-sleep -Seconds 40
