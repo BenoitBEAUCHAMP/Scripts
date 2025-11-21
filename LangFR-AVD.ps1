@@ -61,6 +61,9 @@ if ($Mode -eq "Modern") {
   Set-WinUserLanguageList $LangList -Force
   Copy-Item -Path "HKCU:\Control Panel\International" -Destination "HKU\.DEFAULT\Control Panel\International" -Recurse -Force
   Copy-Item -Path "HKCU:\Keyboard Layout" -Destination "HKU\.DEFAULT\Keyboard Layout" -Recurse -Force
+  Copy-Item -Path "HKCU:\Control Panel\International" -Destination "HKU\S-1-5-18\Control Panel\International" -Recurse -Force
+  Copy-Item -Path "HKCU:\Keyboard Layout" -Destination "HKU\S-1-5-18\Keyboard Layout" -Recurse -Force
+  dism /online /set-locale:fr-FR
 }
   # restart virtual machine to apply regional settings to current user. 
   Start-sleep -Seconds 40
