@@ -1,0 +1,4 @@
+Run the script as administrator in PowerShell:
+
+Set-ExecutionPolicy Bypass -Scope Process -Force
+.\AppxSysprepCleaner.ps1
