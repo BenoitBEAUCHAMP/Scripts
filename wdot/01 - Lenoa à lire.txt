@@ -1,0 +1,15 @@
+################################################################################################################################################################
+## Petit Script Optimisation AVD utilisant WDOT -> paramétrage déjà opérationnel dans les fichiers JSON -> configuration utilisée : "Production-VDI-W11_25H2" ##
+################################################################################################################################################################
+#-- Si besoin adapter : fichier Json indiquant si on Aplique ou non -> Si skip : on laisse / si Appliy : on applique 
+#-- En général pour un service = désactivé, pour une appx = désinstallation)
+#-- Comme le script utilise "Production-VDI-W11_25H2" il faut modifier, si besoin, fichiers dans .\Configurations\Production-VDI-W11_25H2
+
+#-- Utilisation   
+1- Copier Coller C:\wdot au meme emplacement sur AVD à optimiser car le script se positionne dans c:\wdot
+2- Ouvrir powershell en mode admin
+3- Lancer le fichier c:\wdot\01-OptimisationAVDWin25H2.ps1
+   Nettoyage WDOT selon les fichier Json de configuration de .\Configurations\Production-VDI-W11_25H2
+   Nettoyage removeGhosts.ps1 (Supprimer les périphériques cachés inutilisés -> carte réseau notemment. De préférence mettre une planification de tâche "c:\wdot\removeGhosts.ps1 -Force" une fois par mois
+   Ajout Exclusions Defender préconiser Microsoft pour utilisation FSLogix
+   Demande de reboot à la fin

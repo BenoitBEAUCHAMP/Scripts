@@ -1,0 +1,22 @@
+Windows Registry Editor Version 5.00
+
+; ================================
+; Delivery Optimization (DoSvc)
+; AVD Optimization - Neutralisation
+; ================================
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization]
+"DODownloadMode"=dword:00000000
+"DOMaxDownloadBandwidth"=dword:00000000
+"DOMaxUploadBandwidth"=dword:00000000
+"DODownloadModeGroupPolicy"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config]
+"DODownloadMode"=dword:00000000
+"DownloadMode"=dword:00000000
+"DOMaxBackgroundDownloadBandwidth"=dword:00000000
+"DOMaxForegroundDownloadBandwidth"=dword:00000000
+
+; Disable caching aggressif
+"DOMaxCacheAge"=dword:00000000
+"DOMaxCacheSize"=dword:00000000

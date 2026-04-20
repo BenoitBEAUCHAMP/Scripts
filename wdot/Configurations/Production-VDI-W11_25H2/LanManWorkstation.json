@@ -1,0 +1,55 @@
+[
+    {
+        "HivePath": "HKLM:\\System\\CurrentControlSet\\Services\\LanmanWorkstation\\Parameters\\",
+        "Keys": [
+            {
+                "Name": "DisableBandwidthThrottling",
+                "PropertyType": "DWORD",
+                "PropertyValue": 1,
+                "OptimizationState": "Apply"
+            },
+            {
+                "Name": "FileInfoCacheEntriesMax",
+                "PropertyType": "DWORD",
+                "PropertyValue": 1024,
+                "OptimizationState": "Apply"
+            },
+            {
+                "Name": "DirectoryCacheEntriesMax",
+                "PropertyType": "DWORD",
+                "PropertyValue": 1024,
+                "OptimizationState": "Apply"
+            },
+            {
+                "Name": "FileNotFoundCacheEntriesMax",
+                "PropertyType": "DWORD",
+                "PropertyValue": 1024,
+                "OptimizationState": "Apply"
+            },
+            {
+                "Name": "DormantFileLimit",
+                "PropertyType": "DWORD",
+                "PropertyValue": 1024,
+                "OptimizationState": "Apply"
+            },
+			{
+				"Name": "DirectoryCacheLifetime",
+				"PropertyType": "DWORD",
+				"PropertyValue": 0,
+				"OptimizationState": "Apply"
+			},
+			{
+				"Name": "FileInfoCacheLifetime",
+				"PropertyType": "DWORD",
+				"PropertyValue": 0,
+				"OptimizationState": "Apply"
+			},
+			{
+				"Name": "FileNotFoundCacheLifetime",
+				"PropertyType": "DWORD",
+				"PropertyValue": 0,
+				"OptimizationState": "Apply"
+			}
+        ]
+    }
+]
